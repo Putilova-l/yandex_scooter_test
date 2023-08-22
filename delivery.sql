@@ -1,15 +1,24 @@
-
+1.
 SELECT
   c.login,
-  o.inDelivery
+  COUNT (o.track)
 FROM
-  «Couriers» As c
-  RIGHT JOIN «Orders» AS o ON o.courierId = c.id
+  «Couriers» AS c
+  INNER JOIN «Orders» AS o ON o.courierId = c.id
 WHERE
-  inDelivery = true 2.
+  inDelivery = true
+GROUP BY
+  c.login;
 
+2.
 SELECT
   track,
-  inDelivery WHEN finished == true THEN « WHEN canсelled == true THEN « WHEN inDelivery == true THEN «» ELSE 0 END
+  cancelled,
+  finished,
+  inDelivery CASE WHEN finished == true THEN «status = 2» WHEN canсelled == true THEN «status = - 1» WHEN inDelivery == true THEN «status = 1» ELSE “status = 0” END
 FROM
-  «Orders»
+  «Orders»;
+
+
+
+
